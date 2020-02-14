@@ -34,7 +34,7 @@ MCSERVER.login = function (username, password, rand, loginSuccess, loginError, e
 				if (typeof obj['ResponseValue'] == 'number') {
 					var commande = Number.parseInt(obj['ResponseValue']);
 					if (commande == 302) {
-						alert("您已登录,不可重复或覆盖原先登录,我们将为你跳转网页....");
+						alert("您已登入，正在為您跳轉網頁...");
 						window.location.href = '../';
 					}
 					return;
@@ -70,34 +70,34 @@ $(function () {
 		logining = true;
 
 		$btnLogin
-			.html('正在验证...')
+			.html('登入中...')
 			.attr("disabled", "disabled");
 
 		MCSERVER.login($('#login-userid').val(), $('#login-passwd').val(), Math.random(),
 			function () {
 				//成功登陆
 				$btnLogin
-					.html('成功登陆 √')
+					.html('登入成功 √')
 					.attr("disabled", "disabled");
-				console.log('登陆成功√');
+				console.log('登入成功 √');
 				window.location.href = '../';
 			},
 			function () {
 				//错误
 				$btnLogin
-					.html('登陆失败 X')
+					.html('登入失敗 X')
 					.attr("disabled", "disabled");
 				logining = false;
 				setTimeout(function () {
 					$btnLogin
-						.html('重新验证')
+						.html('重新登入')
 						.removeAttr("disabled");;
 				}, 1000);
 			},
 			function () {
 				//服务器错误
 				$btnLogin
-					.html('服务器错误 :(')
+					.html('Error 伺服器錯誤')
 					.removeAttr("disabled");
 			});
 
